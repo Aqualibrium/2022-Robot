@@ -6,15 +6,38 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.*;
+import frc.robot.Constants;
+
 public class Intake extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
-  public Intake() {}
+    TalonSRX conveyor = new TalonSRX(Constants.convey);
+    TalonSRX elevator = new TalonSRX(Constants.elevate);
+
+  public Intake() {
+  
+  }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
 
+  public void runConveyor(double conSpeed){
+    conveyor.set(ControlMode.PercentOutput, conSpeed);
+  }
+
+  public void stopConveyor(){
+    conveyor.set(ControlMode.PercentOutput, 0.0);
+  }
+
+  public void runElevator(double elevSpeed){
+    elevator.set(ControlMode.PercentOutput, elevSpeed);
+  }
+
+  public void stopElevator(){
+        elevator.set(ControlMode.PercentOutput, 0.0);
+  }
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation

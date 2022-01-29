@@ -52,10 +52,17 @@ public final class Constants {
         public static int op27 = 27;
         public static int op28 = 28;
 
-            //Drive Motors
+         //Drive Motors
         public static final int lMaster = 2;
         public static final int lSlave1 = 3;
         public static final int rMaster = 5;
         public static final int rSlave1 = 6;
 
+        // Intake
+        public static final int convey = 20;
+        public static final int elevate = 21;
+
+        // Shooter
+        public static final int shootL = 30;
+        public static final int shootR = 31;
 }

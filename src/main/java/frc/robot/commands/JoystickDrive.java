@@ -4,13 +4,16 @@
 
 package frc.robot.commands;
 
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
-/** An example command that uses an example subsystem. */
+/** Creates a command to control the robot drive */
 public class JoystickDrive extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Drive m_subsystem;
+  private double speed, steer;
 
   /**
    * Creates a new ExampleCommand.
@@ -29,8 +32,13 @@ public class JoystickDrive extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
-
+  public void execute() {
+    speed = RobotContainer.DriverY();
+    steer = RobotContainer.DriverY();
+    m_subsystem.ArcadeDrive(speed, steer);
+    SmartDashboard.putNumber("drive speed", speed);
+    SmartDashboard.putNumber("drive steer", steer);
+  }
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
