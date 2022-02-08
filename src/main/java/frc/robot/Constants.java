@@ -15,10 +15,10 @@ package frc.robot;
 public final class Constants {
         //driver
         public static int drvStick = 0;
-        public static int drA = 4;
+        public static int drA = 1;
         public static int drB = 2;
-        public static int drY = 1;
         public static int drX = 3;
+        public static int drY = 4;
         public static int drLB = 5;
         public static int drRB = 6;
         //operator
@@ -53,16 +53,16 @@ public final class Constants {
         public static int op28 = 28;
 
          //Drive Motors
-        public static final int lMaster = 2;
-        public static final int lSlave1 = 3;
-        public static final int rMaster = 5;
-        public static final int rSlave1 = 6;
+        public static final int lMaster = 5;
+        public static final int lSlave1 = 6;
+        public static final int rMaster = 3;
+        public static final int rSlave1 = 4;
 
         // Intake
-        public static final int convey = 20;
-        public static final int elevate = 21;
+        public static final int convey = 30;
+        public static final int elevate = 31;
 
         // Shooter
-        public static final int shootL = 30;
-        public static final int shootR = 31;
+        public static final int shootL = 20;
+        public static final int shootR = 21;
 }

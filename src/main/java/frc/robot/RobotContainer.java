@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
-//import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 //import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -25,13 +25,14 @@ public class RobotContainer {
   private final Drive m_drive = new Drive();
   private final Shooter m_shooter = new Shooter();
   private final Intake m_intake = new Intake();
+  private final AirSyst m_airSyst = new AirSyst();
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final JoystickDrive JoystickDrive = new JoystickDrive(m_drive);
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   // motor speed variables
-  public static double shootSpd = 0.5;
-  public static double conveySpd = 0.5;
+  public static double shootSpd = 0.7;
+  public static double conveySpd = 0.7;
   public static double elevateSpd = 0.5;
 
     //Driver gamepad
@@ -40,11 +41,12 @@ public class RobotContainer {
   final JoystickButton drB = new JoystickButton(drvStick, Constants.drB);
   final JoystickButton drY = new JoystickButton(drvStick, Constants.drY);
   final JoystickButton drX = new JoystickButton(drvStick, Constants.drX);
-  final JoystickButton drLT = new JoystickButton(drvStick, Constants.drY);
-  final JoystickButton drRT = new JoystickButton(drvStick, Constants.drX);
+  //final JoystickButton drLT = new JoystickButton(drvStick, Constants.drY);
+  //final JoystickButton drRT = new JoystickButton(drvStick, Constants.drX);
   final JoystickButton drLB = new JoystickButton(drvStick, Constants.drLB);
   final JoystickButton drRB = new JoystickButton(drvStick, Constants.drRB);
   // Operator gamepad
+  /*
   final static Joystick opStick = new Joystick(Constants.opStick);
   final JoystickButton op1 = new JoystickButton(opStick, Constants.op1);
   final JoystickButton op2 = new JoystickButton(opStick, Constants.op2);
@@ -74,7 +76,7 @@ public class RobotContainer {
   final JoystickButton op26 = new JoystickButton(opStick, Constants.op26);
   final JoystickButton op27 = new JoystickButton(opStick, Constants.op27);
   final JoystickButton op28 = new JoystickButton(opStick, Constants.op28);
-  
+  */
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_drive.setDefaultCommand(JoystickDrive);
@@ -92,10 +94,14 @@ public class RobotContainer {
     /*
      These commands are place holders for when we have commands
     */
-    drA.whileHeld(new IntakeIn(m_intake, conveySpd));
-    drY.whileHeld(new IntakeIn(m_intake, conveySpd));
-    drLB.whileHeld(new IntakeIn(m_intake, conveySpd));
-    op1.whileHeld(new RunShooter(m_shooter, shootSpd));
+    drA.whileHeld(new IntakeIn(m_intake));
+    drB.whileHeld(new UpElevator(m_intake));
+    drX.whileHeld(new TiltShooter(m_airSyst));
+    drY.whileHeld(new RunShooter(m_shooter));
+    drLB.whileHeld(new ParallelCommandGroup( new RunShooter(m_shooter),
+        new UpElevator(m_intake)));
+    drRB.whileHeld(new IntakeIn(m_intake));
+    //op1.whileHeld(new RunShooter(m_shooter, shootSpd));
     //op2.whenPressed(new RunParascope(m_limelight, true));
 
     //op7.whenPressed( new RunParascope(m_limelight, false));
@@ -138,7 +144,7 @@ public class RobotContainer {
   public static double DriverX() {
     return drvStick.getRawAxis(4);
   }
-  
+  /*
   public static double DriverLT() {
     return drvStick.getRawAxis(2);
   }
@@ -150,5 +156,5 @@ public class RobotContainer {
   public static double ArmY() {
     return opStick.getRawAxis(1);
   }
-
+*/
 }

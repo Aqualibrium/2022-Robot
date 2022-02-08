@@ -30,6 +30,10 @@ public class Drive extends SubsystemBase {
     rightM.restoreFactoryDefaults();
     rightS.restoreFactoryDefaults();
 
+    leftM.setInverted(true);
+    leftS.setInverted(true);
+
+
     leftS.follow(leftM);
     rightS.follow(rightM);
 }
@@ -42,7 +46,7 @@ public class Drive extends SubsystemBase {
 
   public void ArcadeDrive(double speed, double steer) {
     // Set maximum speed based on arm position
-    maxSpeed = 1;
+    maxSpeed = 0.7;
        
     speed = speed * speed * speed * 0.4 * maxSpeed;
     steer = steer * steer * steer * 0.12 * maxSpeed;

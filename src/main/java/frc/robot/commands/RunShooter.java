@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+//import frc.robot.RobotContainer;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -17,7 +18,7 @@ public class RunShooter extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public RunShooter(Shooter subsystem, double speed) {
+  public RunShooter(Shooter subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -26,7 +27,7 @@ public class RunShooter extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_subsystem.runShoot(0.5);
+    m_subsystem.runShoot();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
